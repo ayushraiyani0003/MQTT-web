@@ -1,0 +1,217 @@
+/* TopicTree.css - Enhanced styling for topic tree with highlighting */
+.topic-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--sidebar-color);
+}
+
+.topic-tree-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--section-header-color);
+}
+
+.topic-tree-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.topic-tree-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.tree-action-button {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.tree-action-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.topic-tree-search {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.topic-search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.topic-tree-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.empty-tree-message {
+    padding: 1rem;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+.topic-list {
+    width: 100%;
+}
+
+.topic-item {
+    margin-bottom: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.topic-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.topic-item.selected > .topic-header {
+    background-color: rgba(66, 139, 202, 0.2);
+}
+
+/* Highlight style for recently updated topics */
+.topic-item.recently-updated > .topic-header {
+    animation: highlight-pulse 2s ease-in-out;
+    background-color: rgba(76, 175, 80, 0.15);
+}
+
+@keyframes highlight-pulse {
+    0% {
+        background-color: rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        background-color: rgba(76, 175, 80, 0.2);
+    }
+    100% {
+        background-color: rgba(76, 175, 80, 0.15);
+    }
+}
+
+.update-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    margin-left: 0.5rem;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.toggle-icon {
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+.topic-item.expanded > .topic-header .toggle-icon {
+    transform: rotate(90deg);
+}
+
+.topic-name {
+    font-weight: 500;
+    margin-right: 0.5rem;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-info {
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.1rem 0.4rem;
+    border-radius: 10px;
+}
+
+.subtopic-list {
+    margin-left: 1rem;
+    border-left: 1px dashed var(--border-color);
+    padding-left: 0.5rem;
+}
+
+/* Message preview styling */
+.topic-preview {
+    padding: 0.5rem;
+    margin-left: 1.5rem;
+    background-color: #f9f9f9;
+    border-left: 3px solid var(--primary-color);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-preview {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 0.25rem;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+}
+
+.message-time {
+    text-align: right;
+    color: #666;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topic-preview {
+        margin-left: 0.5rem;
+    }
+
+    .subtopic-list {
+        margin-left: 0.5rem;
+    }
+
+    .topic-name {
+        max-width: 150px;
+    }
+}

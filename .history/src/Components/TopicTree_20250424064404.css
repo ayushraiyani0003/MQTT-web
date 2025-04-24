@@ -1,0 +1,179 @@
+/* TopicTree.css - Enhanced styling for topic tree with highlighting */
+.topic-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--sidebar-color);
+}
+
+.topic-tree-search {
+    display: flex;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--header-color);
+}
+
+.topic-search-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+}
+
+.search-button {
+    background-color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 0 0.75rem;
+    color: var(--text-color);
+}
+
+.topic-tree-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.empty-tree-message {
+    padding: 1rem;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+.topic-list,
+.subtopic-list {
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.subtopic-list {
+    margin-left: 0.5rem;
+    padding-left: 1rem;
+    border-left: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.subtopic-list.hidden {
+    display: none;
+}
+
+.subtopic-list.visible {
+    display: block;
+}
+
+.topic-item {
+    margin-bottom: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.topic-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.topic-item.selected > .topic-header {
+    background-color: rgba(66, 139, 202, 0.2);
+}
+
+.toggle-icon {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.toggle-icon:hover {
+    color: #007bff;
+}
+
+.toggle-icon-placeholder {
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    text-align: center;
+    color: #999;
+    font-size: 10px;
+    display: inline-block;
+}
+
+.topic-name {
+    font-weight: 500;
+    margin-right: 0.5rem;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-item.branch > .topic-header > .topic-name {
+    font-weight: 600;
+}
+
+.topic-info {
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+}
+
+/* Topic content styling */
+.topic-content {
+    padding: 0;
+    font-size: 0.9rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 4px;
+    margin: 0.2rem 0 0.2rem 1.7rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.topic-data {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #333;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.topic-data div {
+    margin-bottom: 0.25rem;
+}
+
+/* Parent topics with a caret */
+.topic-item.branch > .topic-header .toggle-icon {
+    cursor: pointer;
+}
+
+/* Expanded parent */
+.topic-item.expanded > .topic-header .toggle-icon {
+    transform: rotate(0deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topic-name {
+        max-width: 150px;
+    }
+
+    .subtopic-list {
+        margin-left: 0.5rem;
+    }
+}

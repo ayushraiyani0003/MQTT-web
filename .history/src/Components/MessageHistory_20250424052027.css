@@ -1,0 +1,63 @@
+/* MessageHistory.css - Styles for message history display */
+.message-history-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.section-tab {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
+}
+
+.tab-icon {
+    margin-right: 0.5rem;
+}
+
+.tab-title {
+    font-weight: 500;
+}
+
+.message-history {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust based on your design */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.empty-history {
+    padding: 1rem;
+    color: #666;
+    text-align: center;
+}
+
+.message-item {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.message-header {
+    padding: 0.5rem;
+    background-color: var(--section-header-color);
+    font-size: 0.8rem;
+    color: #666;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.message-content {
+    padding: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.message-content pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: monospace;
+    font-size: 0.9rem;
+}

@@ -1,0 +1,383 @@
+/* TopicTree.css - Modern styling with enhanced hierarchical highlighting */
+
+/* Base Structure */
+.topic-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--light-color);
+    font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont,
+        sans-serif;
+}
+
+.topic-tree-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Lists */
+.topic-list,
+.subtopic-list {
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.subtopic-list {
+    margin-left: 0.25rem;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.subtopic-list.visible {
+    max-height: 2000px;
+    opacity: 1;
+}
+
+.subtopic-list.hidden {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Topic Items */
+.topic-item {
+    position: relative;
+    margin: 4px 0;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topic-header:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Icons and Text */
+.toggle-icon,
+.toggle-icon-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    font-size: 12px;
+    color: var(--dark-color);
+    transition: transform 0.3s ease;
+}
+
+.toggle-icon {
+    background-color: var(--primary-light);
+    border-radius: 4px;
+}
+
+.topic-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-info {
+    font-size: 12px;
+    color: #777;
+    margin-left: 8px;
+    font-weight: 400;
+}
+
+/* Branch vs Leaf styling */
+.topic-item.branch > .topic-header {
+    background-color: white;
+    border-left: 3px solid transparent;
+}
+
+.topic-item.leaf > .topic-header {
+    background-color: white;
+    margin-left: 4px;
+}
+
+.topic-item.branch > .topic-header > .topic-name {
+    font-weight: 600;
+}
+
+/* Expanded state */
+.topic-item.expanded > .topic-header .toggle-icon {
+    transform: rotate(90deg);
+}
+
+/* Selected state */
+.topic-item.selected > .topic-header {
+    background-color: var(--primary-light);
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Topic content (message preview) */
+.topic-content {
+    margin: 4px 0 4px 28px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 1px 3px var(--shadow-color);
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.topic-data {
+    word-break: break-word;
+    white-space: pre-wrap;
+    line-height: 1.4;
+}
+
+/* ====== HIERARCHICAL HIGHLIGHT EFFECTS ====== */
+
+/* Root level topic highlight */
+.topic-item.recently-updated {
+    z-index: 10;
+}
+
+.topic-item.recently-updated > .topic-header {
+    background-color: var(--highlight-light);
+    border-left: 3px solid var(--highlight-color);
+    box-shadow: 0 0 10px rgba(255, 212, 198, 0.3);
+}
+
+/* Highlight effects for each level in the hierarchy */
+.topic-item.level-0.recently-updated > .topic-header {
+    background-color: rgba(
+        255,
+        217,
+        205,
+        0.2
+    ); /* Root level: stronger highlight */
+    box-shadow: 0 0 15px rgba(255, 186, 164, 0.2);
+}
+
+.topic-item.level-1.recently-updated > .topic-header {
+    background-color: rgba(255, 152, 0, 0.18); /* Level 1: medium highlight */
+    box-shadow: 0 0 12px rgba(255, 152, 0, 0.18);
+}
+
+.topic-item.level-2.recently-updated > .topic-header {
+    background-color: rgba(255, 193, 7, 0.15); /* Level 2: subtle highlight */
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.15);
+}
+
+/* TopicTree.css - Modern styling with short flash highlight effect */
+
+/* Add this to the existing CSS file */
+
+/* Update highlight effects for quick flash (200ms) */
+.topic-item.recently-updated > .topic-header {
+    animation: quick-flash 200ms ease-out;
+}
+
+/* Different flash colors for each level in hierarchy */
+.topic-item.level-0.recently-updated > .topic-header {
+    animation: quick-flash-root 200ms ease-out;
+}
+
+.topic-item.level-1.recently-updated > .topic-header {
+    animation: quick-flash-level1 200ms ease-out;
+}
+
+.topic-item.level-2.recently-updated > .topic-header {
+    animation: quick-flash-level2 200ms ease-out;
+}
+
+/* Add keyframes for quick flash animations */
+@keyframes quick-flash {
+    0% {
+        background-color: rgba(255, 87, 34, 0.8);
+        box-shadow: 0 0 20px rgba(255, 87, 34, 0.6);
+    }
+    100% {
+        background-color: var(--highlight-light);
+        box-shadow: 0 0 10px rgba(255, 212, 198, 0.3);
+    }
+}
+
+@keyframes quick-flash-root {
+    0% {
+        background-color: rgba(255, 87, 34, 0.8);
+        box-shadow: 0 0 25px rgba(255, 87, 34, 0.7);
+    }
+    100% {
+        background-color: rgba(255, 217, 205, 0.2);
+        box-shadow: 0 0 15px rgba(255, 186, 164, 0.2);
+    }
+}
+
+@keyframes quick-flash-level1 {
+    0% {
+        background-color: rgba(255, 152, 0, 0.7);
+        box-shadow: 0 0 20px rgba(255, 152, 0, 0.6);
+    }
+    100% {
+        background-color: rgba(255, 152, 0, 0.18);
+        box-shadow: 0 0 12px rgba(255, 152, 0, 0.18);
+    }
+}
+
+@keyframes quick-flash-level2 {
+    0% {
+        background-color: rgba(255, 193, 7, 0.6);
+        box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+    }
+    100% {
+        background-color: rgba(255, 193, 7, 0.15);
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.15);
+    }
+}
+
+/* Make update indicator flash more prominently too */
+.update-indicator {
+    animation: indicator-flash 200ms ease-out;
+}
+
+@keyframes indicator-flash {
+    0% {
+        transform: scale(1.5);
+        background-color: #ff3d00;
+        box-shadow: 0 0 15px #ff3d00;
+    }
+    100% {
+        transform: scale(1);
+        background-color: var(--highlight-color);
+        box-shadow: 0 0 8px var(--highlight-color);
+    }
+}
+
+/* All paths in the hierarchy get highlighted */
+.topic-item.ancestor-updated > .topic-header {
+    border-left: 3px solid var(--highlight-color);
+    background-color: rgba(255, 87, 34, 0.05);
+}
+
+.topic-item.ancestor-updated > .subtopic-list {
+    border-left: 2px solid rgba(255, 87, 34, 0.3);
+}
+
+/* Update indicator with pulsing animation */
+.update-indicator {
+    position: relative;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 10px;
+    border-radius: 50%;
+    background-color: var(--highlight-color);
+    box-shadow: 0 0 8px var(--highlight-color);
+}
+
+.update-indicator::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid var(--highlight-color);
+    opacity: 0;
+    animation: ripple 1.5s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+/* Enhanced hierarchical highlighting */
+.topic-item.path-highlight > .topic-header {
+    transition: all 0.3s ease;
+}
+
+.topic-item.path-highlight > .topic-header::before {
+    content: "";
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    width: 15px;
+    height: 2px;
+    background-color: var(--highlight-color);
+    opacity: 0.6;
+}
+
+/* KEYFRAME ANIMATIONS */
+@keyframes ripple {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+    70% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Empty tree message */
+.empty-tree-message {
+    padding: 30px 20px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin: 20px;
+}
+
+/* Enhance the path visualization */
+.connected-path {
+    position: relative;
+}
+
+.connected-path::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    height: 10px;
+    width: 2px;
+    background-color: var(--highlight-color);
+    opacity: 0.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topic-header {
+        padding: 6px 8px;
+    }
+
+    .topic-name {
+        max-width: 150px;
+        font-size: 13px;
+    }
+
+    .subtopic-list {
+        margin-left: 0;
+        padding-left: 10px;
+    }
+}

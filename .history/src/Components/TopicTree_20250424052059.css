@@ -1,0 +1,235 @@
+/* TopicTree.css - Enhanced styling for topic tree with highlighting */
+.topic-tree {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: var(--sidebar-color);
+}
+
+.topic-tree-search {
+    display: flex;
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--header-color);
+}
+
+.topic-search-input {
+    flex: 1;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+}
+
+.search-button {
+    background-color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 0 0.75rem;
+    color: var(--text-color);
+}
+
+.topic-tree-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.empty-tree-message {
+    padding: 1rem;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+.topic-list {
+    width: 100%;
+}
+
+.topic-item {
+    margin-bottom: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.topic-header {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.topic-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.topic-item.selected > .topic-header {
+    background-color: rgba(66, 139, 202, 0.2);
+}
+
+/* Highlight style for recently updated topics */
+.topic-item.recently-updated > .topic-header {
+    animation: highlight-pulse 2s ease-in-out;
+    background-color: rgba(76, 175, 80, 0.15);
+}
+
+@keyframes highlight-pulse {
+    0% {
+        background-color: rgba(76, 175, 80, 0.4);
+    }
+    50% {
+        background-color: rgba(76, 175, 80, 0.2);
+    }
+    100% {
+        background-color: rgba(76, 175, 80, 0.15);
+    }
+}
+
+.update-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--success-color);
+    margin-left: 0.5rem;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.toggle-icon {
+    margin-right: 0.5rem;
+    width: 1rem;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.topic-name {
+    font-weight: 500;
+    margin-right: 0.5rem;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-info {
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+}
+
+.subtopic-list {
+    margin-left: 1.5rem;
+}
+
+/* Topic content styling */
+.topic-content {
+    padding: 0;
+    font-size: 0.9rem;
+    background-color: white;
+}
+
+.topic-data {
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #333;
+}
+
+.topic-data div {
+    margin-bottom: 0.25rem;
+}
+
+/* Parent topics with a caret */
+.topic-item:not(.expanded) > .subtopic-list {
+    display: none;
+}
+
+/* Expanded parent */
+.topic-item.expanded > .topic-header .toggle-icon {
+    transform: rotate(90deg);
+    display: inline-block;
+}
+
+/* Additional styles for parent topics */
+.topic-item {
+    list-style: none;
+}
+
+/* Styling for special parent nodes like in the examples */
+.topic-item.expanded {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topic-name {
+        max-width: 150px;
+    }
+
+    .subtopic-list {
+        margin-left: 1rem;
+    }
+}
+/* TopicPath.css - Styles for the topic path component */
+.topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.tag:hover {
+    background-color: var(--highlight-color);
+}
+
+/* App.css - Add these styles to your existing App.css */
+
+/* Connection error alert */
+.connection-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f5c6cb;
+}
+
+.error-message {
+    flex: 1;
+}
+
+.error-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0 0.5rem;
+    cursor: pointer;
+    color: #721c24;
+}
